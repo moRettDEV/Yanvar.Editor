@@ -10,7 +10,9 @@
     "start": "electron .",
     "dist": "electron-builder --win --x64 --arm64",
     "dist:win": "electron-builder --win --x64 --arm64",
-    "dist:mac": "electron-builder --mac --arm64"
+    "dist:mac": "electron-builder --mac --arm64",
+    "dist:mac:zip": "electron-builder --mac --arm64 --config.mac.target=zip",
+    "dist:mac:dmg": "electron-builder --mac --arm64 --config.mac.target=dmg"
   },
   "devDependencies": {
     "electron": "^33.4.0",
@@ -69,7 +71,7 @@
     "mac": {
       "target": [
         {
-          "target": "dmg",
+          "target": "zip",
           "arch": ["arm64"]
         }
       ],
