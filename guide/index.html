@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Январь.Гид — путеводитель по настройке</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Разделы</h2>
+      <div class="series" style="margin-top:0;padding-top:0;border:0">
+        <a href="setup.html">От ОЛТ до блока клиента</a>
+        <a href="hw.html">Железо и ОЛТ</a>
+        <a href="Трс флаги описание.html">TRS · флаги</a>
+        <a href="Трс пуск описание.html">TRS · пуск</a>
+        <a href="Трс холостой описание.html">TRS · ХХ</a>
+        <a href="Описание прошивки.html">TRS · описание</a>
+        <a href="j5ls_v43.html">LS · J5LS V43A</a>
+        <a href="ctp.html">CTP 3.21</a>
+        <a href="olt.html">J5 / J7 Online</a>
+        <a href="InjOnlDoc.html">InjOnl</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero hero-logo">
+        <p class="meta">
+          <span class="chip tag tag-ecu">Январь 5.1</span>
+          <span class="chip tag tag-trs">TRS</span>
+          <span class="chip tag tag-ls">LS</span>
+          <span class="chip tag tag-tool">InjOnl</span>
+        </p>
+        <h1>Январь.Гид</h1>
+        <p class="lead">Путеводитель по настройке кастомных прошивок Январь 5.1: от заливки в инженерный блок до обкатки и записи в блок клиента. Не сток — только то, чем реально пользуются.</p>
+      </header>
+
+      <section class="pack">
+        <h2>С чего начать</h2>
+        <p class="lead">Один маршрут для любой кастомной линейки. Детали калибровок — в разделах TRS и LS.</p>
+        <div class="cards">
+          <a class="card" href="setup.html">
+            <div class="num">Маршрут</div>
+            <h2>От ОЛТ до блока клиента</h2>
+            <p>Чеклист: флаги, заливка в ОЛТ, InjOnl, пуск, ХХ, обкатка, снять инженерный флаг, записать клиенту.</p>
+            <div class="tags">
+              <span class="tag tag-route">Маршрут</span>
+              <span class="tag tag-ecu">ОЛТ</span>
+              <span class="tag tag-trs">TRS</span>
+              <span class="tag tag-ls">LS</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="pack">
+        <h2>Железо</h2>
+        <p class="lead">Инженерные Январь 5.1 и 7.2, даташиты чипов и провод для Combiloader. Ссылки на Озон — поиск, не конкретный магазин.</p>
+        <div class="cards home">
+          <a class="card" href="hw.html#olt51">
+            <div class="num">ОЛТ</div>
+            <h2>Инженерный 5.1 и 7.2</h2>
+            <p>Чем ОЛТ отличается от клиента. На 5.1 плата часто на флеш, два провода, паяльник. Купить плату или блок — Авито METAL_AUTO.</p>
+            <div class="tags">
+              <span class="tag tag-hw">Железо</span>
+              <span class="tag tag-ecu">5.1</span>
+              <span class="tag tag-ecu">7.2</span>
+              <span class="tag tag-ecu">ОЛТ</span>
+            </div>
+          </a>
+          <a class="card" href="hw.html#cable">
+            <div class="num">Кабель</div>
+            <h2>Провод для прошивки</h2>
+            <p>K-Line на FTDI, распиновка 5.1 и 7.2 на столе, что не брать.</p>
+            <div class="tags">
+              <span class="tag tag-hw">K-Line</span>
+              <span class="tag">Combiloader</span>
+            </div>
+          </a>
+          <a class="card" href="hw.html#chips">
+            <div class="num">Даташиты</div>
+            <h2>Чипы Января</h2>
+            <p>Процессор, флеш, детонация, драйверы, K-Line — и PDF производителей.</p>
+            <div class="tags">
+              <span class="tag tag-hw">Даташит</span>
+              <span class="tag tag-ecu">Январь</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="pack">
+        <h2>TRS</h2>
+        <p class="lead">TRS249 и описание алгоритмов. Калибровки флагов, пуска и ХХ — как в CTP, без переписывания исходных текстов.</p>
+        <div class="cards home">
+          <a class="card" href="Трс флаги описание.html">
+            <div class="num">TRS · калибровки</div>
+            <h2>Флаги комплектации</h2>
+            <p>Что включить под датчики, ДАД/ДМРВ, инженерный режим и доп. флаги ТРС.</p>
+            <div class="tags">
+              <span class="tag tag-trs">TRS</span>
+              <span class="tag tag-trs">TRS249</span>
+              <span class="tag">CTP</span>
+            </div>
+          </a>
+          <a class="card" href="Трс пуск описание.html">
+            <div class="num">TRS · калибровки</div>
+            <h2>Режим Пуск</h2>
+            <p>Топливо, воздух и УОЗ, пока крутит стартер. ДМРВ и ДАД здесь ещё не считают смесь.</p>
+            <div class="tags">
+              <span class="tag tag-trs">TRS</span>
+              <span class="tag tag-trs">TRS249</span>
+              <span class="tag">Пуск</span>
+            </div>
+          </a>
+          <a class="card" href="Трс холостой описание.html">
+            <div class="num">TRS · калибровки</div>
+            <h2>Переход / Холостой ход</h2>
+            <p>Вход в ХХ, РХХ, обороты, УОЗ и адаптация после пуска.</p>
+            <div class="tags">
+              <span class="tag tag-trs">TRS</span>
+              <span class="tag tag-trs">TRS249</span>
+              <span class="tag">ХХ</span>
+            </div>
+          </a>
+          <a class="card" href="Описание прошивки.html">
+            <div class="num">TRS · документ</div>
+            <h2>Описание прошивки</h2>
+            <p>Алгоритмы, цикловое наполнение, температура заряда и рабочие таблицы.</p>
+            <div class="tags">
+              <span class="tag tag-trs">TRS</span>
+              <span class="tag tag-ecu">Январь 5.1</span>
+              <span class="tag">Алгоритмы</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="pack">
+        <h2>LS</h2>
+        <p class="lead">J5 light sport — облегчённая спортивная линейка под Январь 5.1, в том числе работа в ОЛТ.</p>
+        <div class="cards">
+          <a class="card" href="j5ls_v43.html">
+            <div class="num">LS · документ</div>
+            <h2>J5LS V43A</h2>
+            <p>Карты, флаги, инженерный ЭБУ, что убрано из стока и как ставить на авто.</p>
+            <div class="tags">
+              <span class="tag tag-ls">LS</span>
+              <span class="tag tag-ls">J5LS</span>
+              <span class="tag tag-ecu">Январь 5.1</span>
+              <span class="tag">ОЛТ</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="pack">
+        <h2>Софт</h2>
+        <p class="lead">Три программы из пакета. CTP готовит файл, J5/J7 крутит пуск и ХХ онлайн, InjOnl — смесь на ходу.</p>
+        <div class="cards home">
+          <a class="card" href="ctp.html">
+            <div class="num">Инструмент</div>
+            <h2>CTP 3.21</h2>
+            <p>Офлайн-редактор: флаги, форсунки, объём. Иногда пишут CPT — это та же программа.</p>
+            <div class="tags">
+              <span class="tag tag-tool">CTP</span>
+              <span class="tag">CPT</span>
+              <span class="tag">Флаги</span>
+            </div>
+          </a>
+          <a class="card" href="olt.html">
+            <div class="num">Инструмент</div>
+            <h2>J5 / J7 Online</h2>
+            <p>Пуск и ХХ на ОЛТ в реальном времени. Кнопки Розетки, Папка, Дискетки.</p>
+            <div class="tags">
+              <span class="tag tag-tool">J5 Online</span>
+              <span class="tag tag-ecu">7.2</span>
+              <span class="tag">ОЛТ</span>
+            </div>
+          </a>
+          <a class="card" href="InjOnlDoc.html">
+            <div class="num">Инструмент</div>
+            <h2>Injector Online</h2>
+            <p>Связь, ШДК, автокоррекция топлива, фильтры ДД, УОЗ и уставка РХХ.</p>
+            <div class="tags">
+              <span class="tag tag-tool">InjOnl</span>
+              <span class="tag tag-ecu">5.1 / 7.2</span>
+              <span class="tag">ОЛТ</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <p class="source">В пакете сейчас TRS и J5LS — самые ходовые кастомы под Январь 5.1. Стоковые прошивки сюда не клали. Исходные тексты статей не переписывались.</p>
+      <footer class="site-foot">
+        <p>Автор приложения: <a href="https://github.com/moRettDEV" target="_blank" rel="noopener">moRettDEV</a></p>
+        <p>Связь: <a href="https://t.me/m0rett" target="_blank" rel="noopener">t.me/m0rett</a></p>
+      </footer>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>

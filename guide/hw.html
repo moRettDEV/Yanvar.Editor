@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Железо и ОЛТ — Январь.Гид</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Оглавление</h2>
+      <button class="toc-toggle" type="button" id="tocToggle">Показать разделы</button>
+      <ol>
+        <li><a href="#need">Что купить</a></li>
+        <li><a href="#cable">Провод K-Line</a></li>
+        <li><a href="#j51">Прошивка 5.1 на столе</a></li>
+        <li><a href="#j72">Прошивка 7.2 на столе</a></li>
+        <li><a href="#olt51">Инженерный 5.1</a></li>
+        <li><a href="#olt72">Инженерный 7.2</a></li>
+        <li><a href="#chips">Даташиты чипов</a></li>
+      </ol>
+      <div class="series">
+        <div class="toc-brand">Серия</div>
+        <a href="index.html">Все статьи</a>
+        <a href="setup.html">От ОЛТ до блока клиента</a>
+        <a class="current" href="hw.html">Железо и ОЛТ</a>
+        <a href="Трс флаги описание.html">Флаги комплектации</a>
+        <a href="Трс пуск описание.html">Режим Пуск</a>
+        <a href="Трс холостой описание.html">Переход / Холостой ход</a>
+        <a href="Описание прошивки.html">Описание прошивки</a>
+        <a href="ctp.html">CTP 3.21</a>
+        <a href="olt.html">J5 / J7 Online</a>
+        <a href="InjOnlDoc.html">Injector Online</a>
+        <a href="j5ls_v43.html">J5LS V43A</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero">
+        <p class="meta">
+          <span class="chip tag tag-hw">Железо</span>
+          <span class="chip tag tag-ecu">Январь 5.1</span>
+          <span class="chip tag tag-ecu">Январь 7.2</span>
+          <span class="chip tag tag-ecu">ОЛТ</span>
+        </p>
+        <h1>Железо и ОЛТ</h1>
+      </header>
+      <article>
+        <h2 id="need">Что купить</h2>
+        <p>Инженерный блок — это обычный Январь, в котором калибровки можно крутить онлайн (InjOnl / J5 Online Tuner). Клиентский блок так не умеет: в него только заливают готовый bin. Маршрут настройки — в <a href="setup.html">чеклисте</a>.</p>
+        <p>Новичку проще купить готовую плату ОЛТ или уже собранный инженерный ЭБУ, чем травить плату с нуля. Платы 5.1 / 7.2 и готовые инженерные блоки продаёт <a href="https://www.avito.ru/user/6fd1a6dabba0f9d1e8799d4d9c6a85a7/profile" target="_blank" rel="noopener">METAL_AUTO на Авито</a>.</p>
+        <p>На Январь 5.1 есть платы, которые надеваются на штатную флеш AM29F010: чип не снимают, подпаивают два провода обычным паяльником. Фен не нужен. Снимать флеш и тянуть ноги на процессор — другой тип плат, в большинстве случаев так не делают.</p>
+        <div class="shop">
+          <a href="https://www.avito.ru/user/6fd1a6dabba0f9d1e8799d4d9c6a85a7/profile" target="_blank" rel="noopener">Авито · платы и ОЛТ</a>
+          <a href="https://www.ozon.ru/search/?text=K-Line%20адаптер%20FTDI" target="_blank" rel="noopener">Озон · K-Line FTDI</a>
+          <a href="https://www.ozon.ru/search/?text=USB%20K-Line%20VAG%20KKL%20FTDI" target="_blank" rel="noopener">Озон · VAG KKL FTDI</a>
+          <a href="https://www.ozon.ru/search/?text=разъем%20ЭБУ%2055%20pin" target="_blank" rel="noopener">Озон · разъём 55 pin</a>
+          <a href="https://www.ozon.ru/search/?text=разъем%20ЭБУ%2081%20pin" target="_blank" rel="noopener">Озон · разъём 81 pin</a>
+          <a href="https://www.ozon.ru/search/?text=блок%20питания%2012В%205А" target="_blank" rel="noopener">Озон · БП 12 В</a>
+        </div>
+        <ul>
+          <li>Ноутбук, лучше с питанием от прикуривателя если работаете в авто</li>
+          <li>Адаптер K-Line на чипе FTDI. CH340, ELM327 и дешёвый «диагностический» часто молчат в Combiloader</li>
+          <li>Combiloader 2.18, CTP 3.21, InjOnl / J5 Online Tuner — уже в этом пакете</li>
+          <li>На стол: БП 12 В от 3–5 А или аккумулятор. Слабые зарядки для АКБ часто дают сбои связи</li>
+          <li>Разъём блока или крокодилы. Для 5.1 — 55 pin, для 7.2 — 81 pin</li>
+          <li>Резистор 4.7 кОм — разрешение программирования на 7.2</li>
+          <li>Готовая инженерная плата или собранный ОЛТ — у <a href="https://www.avito.ru/user/6fd1a6dabba0f9d1e8799d4d9c6a85a7/profile" target="_blank" rel="noopener">METAL_AUTO</a></li>
+        </ul>
+        <p class="note">На машине K-линия часто идёт через АПС. Если на столе блок отвечает, а в авто нет — К тянут напрямую на диагностическую колодку.</p>
+
+        <h2 id="cable">Провод K-Line</h2>
+        <p>Combiloader и онлайн общаются по ISO 9141 (одна линия K). Готовый USB–K-Line на FTDI надёжнее самоделки. Самодельный вариант — FT232RL плюс преобразователь уровня (MC33199, L9637 или транзисторная схема). Ищите «FT232 K-Line», не берите первый китайский VAG без FTDI.</p>
+        <p>Колодка OBD-II, если шьёте на машине:</p>
+        <table>
+          <thead><tr><th>Пин OBD</th><th>Куда</th></tr></thead>
+          <tbody>
+            <tr><td>4 и 5</td><td>Масса</td></tr>
+            <tr><td>7</td><td>K-Line</td></tr>
+            <tr><td>16</td><td>+12 В на адаптер, только если адаптер этого хочет. На стол +12 на пин 16 часто не дают</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>В диспетчере устройств виден FTDI, не CH340 / не ELM</li>
+          <li>Combiloader видит COM, драйвер стоит</li>
+          <li>Земля адаптера и земля блока общие, толстый провод</li>
+          <li>К идёт на пин K блока, не перепутан с L</li>
+        </ul>
+
+        <h2 id="j51">Прошивка Январь 5.1 на столе</h2>
+        <p>Разъём 55 pin. Так подключает Combiloader. Сначала питание, потом разрешение программирования, потом зажигание.</p>
+        <table>
+          <thead><tr><th>Контакт</th><th>Цепь</th></tr></thead>
+          <tbody>
+            <tr><td>19</td><td>Масса</td></tr>
+            <tr><td>18</td><td>+12 постоянное (К30)</td></tr>
+            <tr><td>37</td><td>+12 после главного реле</td></tr>
+            <tr><td>47</td><td>Разрешение программирования, +12 В</td></tr>
+            <tr><td>27</td><td>+12 зажигание (К15), удобно через тумблер</td></tr>
+            <tr><td>55</td><td>K-Line</td></tr>
+          </tbody>
+        </table>
+        <p>МИКАС 7.1: разрешение программирования на 42, не на 47. VS 5.1 OLD — тот же кабель, драйвер K другой (L9637).</p>
+        <ul>
+          <li>19 на массу БП, отдельным проводом</li>
+          <li>18 и 37 на +12</li>
+          <li>47 на +12 (разрешение записи)</li>
+          <li>27 на +12 после паузы 1–2 с</li>
+          <li>55 на K адаптера</li>
+          <li>Combiloader увидел блок</li>
+        </ul>
+
+        <p class="note">Если прошивка закрыта от чтения, попытка считать её может стереть блок. Сначала должен быть bin, который собираетесь писать.</p>
+
+        <h2 id="j72">Прошивка Январь 7.2 на столе</h2>
+        <p>Разъём 81 pin (как Bosch M7.9.7). Скорость в онлайн часто 38400. Адаптер — FTDI.</p>
+        <table>
+          <thead><tr><th>Контакт</th><th>Цепь</th></tr></thead>
+          <tbody>
+            <tr><td>51 и 53</td><td>Масса</td></tr>
+            <tr><td>12</td><td>+12 постоянное</td></tr>
+            <tr><td>13</td><td>+12 зажигание, тумблер</td></tr>
+            <tr><td>44 и 63</td><td>+12 главного реле</td></tr>
+            <tr><td>43</td><td>Разрешение программирования: +12 через резистор ~4.7 кОм</td></tr>
+            <tr><td>71</td><td>K-Line</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>51 и 53 на массу</li>
+          <li>12, 44, 63 на +12</li>
+          <li>43 на +12 через 4.7 кОм</li>
+          <li>13 на +12 тумблером</li>
+          <li>71 на K</li>
+          <li>Загрузчик видит 7.2</li>
+        </ul>
+        <h2 id="olt51">Инженерный Январь 5.1</h2>
+        <p>В стоке калибровки лежат во флеш. Онлайн их не переписать на лету. Плата ОЛТ вешает внешнее ОЗУ: тюнер пишет таблицы в RAM, мотор сразу едет по новым цифрам. После обкатки bin сохраняют и заливают в обычный блок без флага «Инженерный ЭБУ» — это в <a href="setup.html">маршруте</a> и в <a href="j5ls_v43.html">J5LS</a>.</p>
+        <p>Готовую плату или собранный ОЛТ берите у <a href="https://www.avito.ru/user/6fd1a6dabba0f9d1e8799d4d9c6a85a7/profile" target="_blank" rel="noopener">METAL_AUTO на Авито</a>. Смотрите ревизию: HIP9010 или HIP9011 (примерно с 08.2005), VS 5.1 OLD или обычный Январь.</p>
+        <p>На 5.1 обычно плата надевается на штатную флеш AM29F010, чип не снимают. Подпаивают два провода обычным паяльником. Фен не обязателен. Снимать флеш и тянуть ноги на SAF-C509 — только если инструкция именно этой платы так велит. На части плат есть DS2401 под старые платные тюнеры.</p>
+        <ul>
+          <li>Сфоткать плату: процессор, флеш, HIP9010 или 9011, есть ли Dallas</li>
+          <li>Считать сток Combiloader, файл лежит отдельно</li>
+          <li>Плата ОЛТ под эту ревизию: на 5.1 чаще «на флеш», два провода</li>
+          <li>Смыть лак только с площадок под эти два провода, кислотный флюс не использовать</li>
+          <li>Флеш не снимать, если плата надевается на неё</li>
+          <li>Два провода припаяны паяльником по схеме платы</li>
+          <li>Залить инженерный bin с флагом «Инженерный ЭБУ», флаги в CTP выставить заранее</li>
+          <li>Выйти в онлайн на столе, потом на авто</li>
+        </ul>
+
+        <p class="note">Флаги комплектации на живом ОЛТ не правятся. Поменяли в CTP — снова записали bin Combiloader.</p>
+
+        <h2 id="olt72">Инженерный Январь 7.2</h2>
+        <p>Идея та же: дочерняя плата с RAM. Плата не от 5.1 — 7.2 отдельно. Процессор — C167 / ST10, смотрите маркировку. Детонация обычно HIP9011. Адаптер только FTDI, скорость часто 38400. Готовые платы и блоки 7.2 — там же, у <a href="https://www.avito.ru/user/6fd1a6dabba0f9d1e8799d4d9c6a85a7/profile" target="_blank" rel="noopener">METAL_AUTO</a>.</p>
+        <ul>
+          <li>Ревизия 7.2 и маркировка CPU/HIP сняты на фото</li>
+          <li>Сток bin сохранён</li>
+          <li>Плата именно под Январь 7.2</li>
+          <li>K на авто напрямую, не через АПС</li>
+          <li>Онлайн есть и на столе, и на машине</li>
+          <li>После настройки инженерный флаг снят, в клиент уехал чистый файл</li>
+        </ul>
+
+        <h2 id="chips">Даташиты чипов</h2>
+        <p>Состав Январь 5.1 / VS 5.1 — по элементной базе chiptuner.ru. Поздние 5.1: HIP9010 меняют на HIP9011. На 7.2 смотрите маркировку CPU (C167 / ST10). Картинка — первая страница с AllDatasheet. Полный PDF — у них или у изготовителя.</p>
+
+        <h3>Мозги и память</h3>
+        <div class="chip-ds-grid">
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/79571/INFINEON/SAF-C509-LM.html" target="_blank" rel="noopener"><img src="images/chips/C509.gif" alt="SAF-C509-LM, первая страница даташита"></a>
+            <h4>SAF / SAB C509</h4>
+            <p>Процессор Январь 5.1, семейство Infineon C500</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/79571/INFINEON/SAF-C509-LM.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.infineon.com/cms/en/product/microcontroller/legacy-microcontroller/" target="_blank" rel="noopener">Infineon</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/45104/SIEMENS/C167CR.html" target="_blank" rel="noopener"><img src="images/chips/C167CR.gif" alt="C167CR, первая страница даташита"></a>
+            <h4>C167CR</h4>
+            <p>Процессор Январь 7.2 (иногда ST10). Смотрите маркировку на плате</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/45104/SIEMENS/C167CR.html" target="_blank" rel="noopener">AllDatasheet</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/55465/AMD/AM29F010-120DGI1.html" target="_blank" rel="noopener"><img src="images/chips/AM29F010die.gif" alt="AM29F010, первая страница даташита"></a>
+            <h4>AM29F010</h4>
+            <p>Флеш 1 Mbit. Чужой аналог на 5.1 часто не входит в запись</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/55465/AMD/AM29F010-120DGI1.html" target="_blank" rel="noopener">AllDatasheet</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>29F200</h4>
+            <p>VS 5.1, используется половина чипа</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=AM29F200" target="_blank" rel="noopener">AllDatasheet</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/104124/ATMEL/AT24C04A.html" target="_blank" rel="noopener"><img src="images/chips/AT24C04A.gif" alt="AT24C04A, первая страница даташита"></a>
+            <h4>24C04</h4>
+            <p>EEPROM: иммо, VIN</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/104124/ATMEL/AT24C04A.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.microchip.com/en-us/product/at24c04d" target="_blank" rel="noopener">Microchip</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/201529/TI/SN74HC573A.html" target="_blank" rel="noopener"><img src="images/chips/SN74HC573A.gif" alt="SN74HC573A, первая страница даташита"></a>
+            <h4>74HC573</h4>
+            <p>Защёлка адресов флеш</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/201529/TI/SN74HC573A.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.nexperia.com/product/74HC573" target="_blank" rel="noopener">Nexperia</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/546573/NXP/74HC14DB.html" target="_blank" rel="noopener"><img src="images/chips/74HC14.gif" alt="74HC14, первая страница даташита"></a>
+            <h4>74HC14</h4>
+            <p>Инверторы</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/546573/NXP/74HC14DB.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.nexperia.com/product/74HC14" target="_blank" rel="noopener">Nexperia</a></p>
+          </div>
+        </div>
+
+        <h3>Датчики и силовая</h3>
+        <div class="chip-ds-grid">
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/67199/INTERSIL/HIP9010.html" target="_blank" rel="noopener"><img src="images/chips/HIP9010.gif" alt="HIP9010, первая страница даташита"></a>
+            <h4>HIP9010</h4>
+            <p>Детонация, ранние платы 5.1</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/67199/INTERSIL/HIP9010.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.renesas.com/en/document/dst/hip9010-datasheet" target="_blank" rel="noopener">Renesas</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/179256/INTERSIL/HIP9011.html" target="_blank" rel="noopener"><img src="images/chips/HIP9011.gif" alt="HIP9011, первая страница даташита"></a>
+            <h4>HIP9011</h4>
+            <p>Детонация после ~08.2005 и на 7.2</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/179256/INTERSIL/HIP9011.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.renesas.com/en/document/dst/hip9011-datasheet" target="_blank" rel="noopener">Renesas</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/737838/TI/LM1815.html" target="_blank" rel="noopener"><img src="images/chips/LM1815.gif" alt="LM1815, первая страница даташита"></a>
+            <h4>LM1815</h4>
+            <p>ДПКВ</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/737838/TI/LM1815.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.ti.com/lit/ds/symlink/lm1815.pdf" target="_blank" rel="noopener">TI PDF</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/396782/INFINEON/TLE4729G.html" target="_blank" rel="noopener"><img src="images/chips/TLE4729G.gif" alt="TLE4729G, первая страница даташита"></a>
+            <h4>TLE4729G</h4>
+            <p>Драйвер РХХ</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/396782/INFINEON/TLE4729G.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.infineon.com/cms/en/product/power/motor-control-ics/stepper-motor-driver-ics/tle4729g/" target="_blank" rel="noopener">Infineon</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>TPS2814D</h4>
+            <p>Зажигание</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=TPS2814" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.ti.com/lit/ds/symlink/tps2814.pdf" target="_blank" rel="noopener">TI PDF</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>TLE5216G</h4>
+            <p>Силовые выходы на землю</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=TLE5216G" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.infineon.com/cms/en/product/power/smart-low-side-switches/" target="_blank" rel="noopener">Infineon</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>HIP0045</h4>
+            <p>Силовой драйвер</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=HIP0045" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.renesas.com/en/document/dst/hip0045-datasheet" target="_blank" rel="noopener">Renesas</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>BTS141</h4>
+            <p>Подогрев лямбды</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=BTS141" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.infineon.com/cms/en/product/power/smart-low-side-switches/classic-profet/bts141/" target="_blank" rel="noopener">Infineon</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/860397/INFINEON/TLE4267G.html" target="_blank" rel="noopener"><img src="images/chips/TLE4267G.gif" alt="TLE4267G, первая страница даташита"></a>
+            <h4>TLE4267G</h4>
+            <p>+5 В и сброс</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/860397/INFINEON/TLE4267G.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.infineon.com/cms/en/product/power/linear-voltage-regulator-ldo/tle4267/" target="_blank" rel="noopener">Infineon</a></p>
+          </div>
+          <div class="chip-ds">
+            <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/187673/FREESCALE/MC33199.html" target="_blank" rel="noopener"><img src="images/chips/MC33199.gif" alt="MC33199, первая страница даташита"></a>
+            <h4>MC33199</h4>
+            <p>K-Line на Январь 5.1</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/187673/FREESCALE/MC33199.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.onsemi.com/pdf/datasheet/mc33199-d.pdf" target="_blank" rel="noopener">onsemi PDF</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>L9637</h4>
+            <p>K-Line на VS 5.1 и адаптерах</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/datasheet-pdf/pdf/2218271/STMICROELECTRONICS/L9637_V01.html" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://www.st.com/resource/en/datasheet/l9637.pdf" target="_blank" rel="noopener">ST PDF</a></p>
+          </div>
+          <div class="chip-ds no-img">
+            <h4>FT232RL</h4>
+            <p>USB–UART адаптера</p>
+            <p class="chip-ds-links"><a href="https://www.alldatasheet.com/view.jsp?Searchword=FT232RL" target="_blank" rel="noopener">AllDatasheet</a> <a href="https://ftdichip.com/products/ft232rl/" target="_blank" rel="noopener">FTDI</a></p>
+          </div>
+        </div>
+        <p>На 7.2 даташит берите по точной маркировке на плате. Распиновка разъёма совпадает с Bosch M7.9.7 по питанию и K (пин 71).</p>
+        <div class="shop">
+          <a href="https://www.ozon.ru/search/?text=AM29F010" target="_blank" rel="noopener">Озон · AM29F010</a>
+          <a href="https://www.ozon.ru/search/?text=HIP9011" target="_blank" rel="noopener">Озон · HIP9011</a>
+          <a href="https://www.ozon.ru/search/?text=FT232RL" target="_blank" rel="noopener">Озон · FT232RL</a>
+          <a href="https://www.ozon.ru/search/?text=L9637" target="_blank" rel="noopener">Озон · L9637</a>
+        </div>
+        <p>Дальше по калибровкам — <a href="setup.html">от ОЛТ до клиента</a>.</p>
+              </article>
+      <p class="source">Распиновка стола — как у Combiloader / SMS-Soft. Элементная база 5.1 — chiptuner.ru. Превью первой страницы — AllDatasheet (архив). PDF — у изготовителя. Платы и ОЛТ — Авито, продавец METAL_AUTO. Озон — поисковые ссылки, ассортимент плывёт.</p>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>

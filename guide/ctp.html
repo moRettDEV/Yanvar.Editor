@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>CTP 3.21 — Январь.Гид</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Оглавление</h2>
+      <button class="toc-toggle" type="button" id="tocToggle">Показать разделы</button>
+      <ol>
+        <li><a href="#what">Что это</a></li>
+        <li><a href="#open">Открыть файл</a></li>
+        <li><a href="#flags">Флаги и железо</a></li>
+        <li><a href="#save">Сохранить копию</a></li>
+        <li><a href="#flash">Запись в блок</a></li>
+        <li><a href="#injonl">CTP из InjOnl</a></li>
+      </ol>
+      <div class="series">
+        <div class="toc-brand">Серия</div>
+        <a href="index.html">Все статьи</a>
+        <a href="setup.html">От ОЛТ до блока клиента</a>
+        <a class="current" href="ctp.html">CTP 3.21</a>
+        <a href="olt.html">J5 / J7 Online</a>
+        <a href="InjOnlDoc.html">Injector Online</a>
+        <a href="hw.html">Железо и ОЛТ</a>
+        <a href="Трс флаги описание.html">Флаги комплектации</a>
+        <a href="j5ls_v43.html">J5LS V43A</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero">
+        <p class="meta">
+          <span class="chip tag tag-tool">Инструмент</span>
+          <span class="chip tag tag-tool">CTP</span>
+          <span class="chip tag tag-ecu">Январь 5.1</span>
+          <span class="chip tag tag-ecu">Январь 7.2</span>
+        </p>
+        <h1>CTP 3.21</h1>
+      </header>
+      <article>
+        <p>CTP — Chip Tuning Program 3.21 из папки <code>CTP-3.21 0923</code>. Иногда пишут CPT: это та же программа, файл <code>ctp321.exe</code>. Офлайн-редактор: флаги, форсунки, объём, датчики. Онлайн на машине она сама не крутит — для этого <a href="olt.html">J5 / J7 Online</a> и <a href="InjOnlDoc.html">Injector Online</a>.</p>
+
+        <h2 id="what">Что это</h2>
+        <p>Сначала готовите bin в CTP, потом пишете его Combiloader в инженерный блок. На живом ОЛТ флаги комплектации не меняются: поправили в CTP — снова записали файл в блок.</p>
+        <p>Интерфейс тот же, что у редактора SMS-Soft: дерево калибровок, таблицы, флаги. Карты под вашу прошивку лежат рядом с программой (папки Bin, user.lin).</p>
+
+        <h2 id="open">Открыть файл</h2>
+        <p>Не правьте исходник из пакета. Скопируйте bin в рабочую папку и откройте копию.</p>
+        <ul>
+          <li>Запустите <code>ctp321.exe</code> из папки CTP 3.21</li>
+          <li>Файл → Открыть → ваша рабочая копия</li>
+          <li>Если карты не подхватились — не тот идентификатор прошивки. Возьмите bin той же линейки (TRS или J5LS), не мешайте файлы</li>
+        </ul>
+
+        <h2 id="flags">Флаги и железо</h2>
+        <p>До заливки в ОЛТ выставьте то, что стоит на моторе. Смысл галок TRS — в <a href="Трс флаги описание.html">Флаги комплектации</a>, J5LS — в <a href="j5ls_v43.html">J5LS V43A</a>.</p>
+        <ul>
+          <li>Датчики: УДК/ДК, ДД, ДТВ, ДФ, ДС — только то, что стоит</li>
+          <li>Воздух один: либо ДМРВ, либо ДАД. Не мешать режимы в одном файле</li>
+          <li>Объём двигателя, статика форсунок — как на рампе, не «на глаз»</li>
+          <li>Флаг «Инженерный ЭБУ» — для ОЛТ включён. В клиентский файл его потом снимете</li>
+        </ul>
+        <p class="note">J5LS: флаги на горячую в блоке не живут. Сменили галку — Combiloader и перезапись.</p>
+
+        <h2 id="save">Сохранить копию</h2>
+        <p>Сохраните как отдельное имя, например <code>откатка_флаги.bin</code>. Исходник не затирайте. Этот файл и пишете в ОЛТ, и потом открываете в J5 Online / InjOnl — один и тот же.</p>
+
+        <h2 id="flash">Запись в блок</h2>
+        <p>CTP в блок не пишет. Запись — Combiloader 2.18, кабель K-Line на FTDI. Распиновка стола — в <a href="hw.html">Железо и ОЛТ</a>.</p>
+        <ul>
+          <li>Откройте в Combiloader тот же файл, что сохранили в CTP</li>
+          <li>Дождитесь конца записи, зажигание выкл/вкл</li>
+          <li>При сомнении считайте обратно и сверьте</li>
+        </ul>
+
+        <h2 id="injonl">CTP из InjOnl</h2>
+        <p>Injector Online умеет открыть окно CTP на живом моторе. В InjOnl: Свойства → Визуальные → «Путь к файлу ЧТП3.21» → укажите <code>ctp321.exe</code>. После этого кнопка «Молния» запускает CTP.</p>
+        <p>Поменяли таблицу — нажмите «Дискетки» в окне CTP. Иначе правка не уйдёт в блок. Это не то же самое, что сохранить bin на диск навсегда: постоянная прошивка снова пишется Combiloader.</p>
+        <p>Пуск и ХХ удобнее сначала в <a href="olt.html">J5 / J7 Online</a>, смесь по дороге — в <a href="InjOnlDoc.html">InjOnl</a>.</p>
+      </article>
+      <p class="source">По пакету CTP-3.21 и краткой инструкции к J5 Online / InjOnl. Лицензии и прошивки SMS-Soft к конкретной плате не обходятся.</p>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>

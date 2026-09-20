@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>LS · ДАД + ДТВ — Январь.Гид</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Оглавление</h2>
+      <button class="toc-toggle" type="button" id="tocToggle">Показать разделы</button>
+      <ol>
+        <li><a href="#s0">Как пользоваться</a></li>
+        <li><a href="#s1">1. Железо и софт</a></li>
+        <li><a href="#s2">2. Флаги в CTP</a></li>
+        <li><a href="#s3">3. Заливка в инженерный блок</a></li>
+        <li><a href="#s4">4. Связь с InjOnl</a></li>
+        <li><a href="#s5">5. Настройки InjOnl</a></li>
+        <li><a href="#s6">6. Пуск</a></li>
+        <li><a href="#s7">7. Переход и холостой ход</a></li>
+        <li><a href="#s8">8. Топливо, детонация, УОЗ</a></li>
+        <li><a href="#s9">9. Обкатка</a></li>
+        <li><a href="#s10">10. Снять инженерный флаг</a></li>
+        <li><a href="#s11">11. Заливка в блок клиента</a></li>
+      </ol>
+      <div class="series">
+        <div class="toc-brand">Серия</div>
+        <a href="index.html">Все статьи</a>
+        <a href="setup.html">Маршруты</a>
+        <a href="setup-ls-dmrv.html">LS · ДМРВ</a>
+        <a class="current" href="setup-ls-dad.html">LS · ДАД</a>
+        <a href="setup-ls-turbo.html">LS · турбо</a>
+        <a href="ctp.html">CTP 3.21</a>
+        <a href="Трс флаги описание.html">Флаги комплектации</a>
+        <a href="Трс пуск описание.html">Режим Пуск</a>
+        <a href="Трс холостой описание.html">Переход / Холостой ход</a>
+        <a href="Описание прошивки.html">Описание прошивки</a>
+        <a href="InjOnlDoc.html">Injector Online</a>
+        <a href="j5ls_v43.html">J5LS V43A</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero">
+        <p class="meta">
+          <span class="chip tag tag-route">Маршрут</span>
+          <span class="chip tag tag-ls">LS</span>
+          <span class="chip tag">ДАД + ДТВ</span>
+          <span class="chip tag tag-ecu">ОЛТ</span>
+        </p>
+        <h1>LS · ДАД + ДТВ</h1>
+      </header>
+      <article>
+        <div class="check-head">
+          <strong id="checkProgress">0 / 0</strong>
+          <button type="button" id="checkReset"></button>
+        </div>
+        <h2 id="s0">Как пользоваться</h2>
+        <p>J5LS без расходомера: ДАД в ресивере и ДТВ. Сигнал ДАД — пин 40, +5 — пин 12, масса — пин 30. ДТВ — пин 44 вместо 51. Если стоит ДМРВ и нет ДАД — <a href="setup-ls-dmrv.html">маршрут ДМРВ</a>.</p>
+        <p class="note">Флаги на живом ОЛТ не правятся. Поменяли в CTP — Combiloader. Не перенос калибровок в клиент. Текст — <a href="j5ls_v43.html">J5LS V43A</a>.</p>
+
+        <h2 id="s1">1. Железо и софт</h2>
+        <p>Пока нет связи, ШДК и правильного бинника, крутить пуск и ХХ бессмысленно. Стенд и софт — в <a href="InjOnlDoc.html">Injector Online</a>. Как сделать ОЛТ, кабель и что за чипы в блоке — в <a href="hw.html">Железо и ОЛТ</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="hw-olt"> Инженерный ЭБУ на столе или в машине (J5OLT / J5 Online Tuner, либо VS 5.1 OLD с нужными флагами)</label>
+          <label class="check"><input type="checkbox" data-check="hw-kline"> Адаптер K-Line, ноутбук, питание ноутбука от бортсети если работаете в авто</label>
+          <label class="check"><input type="checkbox" data-check="hw-wdk"> ШДК (LC-1 / LM-1 / LM-2 / AEM) и отдельный COM или USB</label>
+          <label class="check"><input type="checkbox" data-check="hw-soft"> Combiloader 2.18, CTP 3.21, J5 Online / InjOnl. Bin J5LS под ДАД + ДТВ, свои форсунки</label>
+          <label class="check"><input type="checkbox" data-check="hw-copy"> Рабочая копия бинника, исходник не трогаю</label>
+        </div>
+
+        <h2 id="s2">2. Флаги в CTP — до заливки в ОЛТ</h2>
+        <p>J5LS, вариант «ДАД + ДТВ». Включить: без ДМРВ, корректировать БЦН по ДТВ, ДТВ, «ДТВ на 44 вместо 51», «ДАД на 40 вместо 7». Снять: барокоррекция дросселя и «наполнение по таблице БЦН». Пины: сигнал 40, +5 пин 12, масса пин 30. ДАД Волга / Нива / MPX4250. <a href="j5ls_v43.html">J5LS V43A</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="fl-open"> Открыл рабочую копию в CTP 3.21</label>
+          <label class="check"><input type="checkbox" data-check="fl-on"> Включил: без ДМРВ, БЦН по ДТВ, ДТВ, ДТВ на 44, ДАД на 40</label>
+          <label class="check"><input type="checkbox" data-check="fl-off"> Снял: барокоррекция дросселя, наполнение по таблице БЦН</label>
+          <label class="check"><input type="checkbox" data-check="fl-pin"> ДАД: сигнал 40, +5 на 12, масса на 30. ДТВ на 44</label>
+          <label class="check"><input type="checkbox" data-check="fl-vol"> Цилиндровый объём ДАД: объём мотора / 4 (для 1499 это ~375)</label>
+          <label class="check"><input type="checkbox" data-check="fl-eng"> Стоит флаг «Инженерный ЭБУ»</label>
+          <label class="check"><input type="checkbox" data-check="fl-save"> Сохранил bin, запись в ОЛТ Combiloader</label>
+        </div>
+
+        <h2 id="s3">3. Заливка в инженерный блок</h2>
+        <p>Пишем уже тот файл, где флаги и инженерный режим выставлены. Combiloader 2.18.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="ol-connect"> Зажигание, связь Combiloader видит блок</label>
+          <label class="check"><input type="checkbox" data-check="ol-write"> Записал рабочий bin в ОЛТ, дождался конца записи</label>
+          <label class="check"><input type="checkbox" data-check="ol-read"> При сомнении считал обратно и сверил, что в блоке тот же файл</label>
+          <label class="check"><input type="checkbox" data-check="ol-key"> Зажигание выкл/вкл после записи, ошибки не копятся от кривого железа</label>
+        </div>
+        <h2 id="s4">4. Связь с InjOnl</h2>
+        <p>В программе должен быть открыт тот же bin, что лежит в ОЛТ. Иначе правите одно, а блок едет по другому. Как открыть и соединиться — <a href="InjOnlDoc.html">Injector Online</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="io-open"> Открыл в InjOnl тот же файл, что залит в ОЛТ</label>
+          <label class="check"><input type="checkbox" data-check="io-link"> Соединил, обмен без красного ComEr</label>
+          <label class="check"><input type="checkbox" data-check="io-same"> Параметры с блока сходятся с открытым файлом (не «чужая» прошивка)</label>
+        </div>
+
+        <h2 id="s5">5. Настройки InjOnl перед крутилкой</h2>
+        <p>Порты, таймауты и топливные флаги — в той же инструкции InjOnl. Пока учите топливо, отсечка на ПХХ мешает: смесь на выбеге уезжает в мусор.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="st-com"> COM K-Line, скорость и таймауты без ошибок обмена</label>
+          <label class="check"><input type="checkbox" data-check="st-wdk"> Порт и тип ШДК, стехиометрия, ШДК живой и прогрет</label>
+          <label class="check"><input type="checkbox" data-check="st-fuel"> На время обучения топлива: постоянная подача / запрет отключения на ПХХ</label>
+          <label class="check"><input type="checkbox" data-check="st-hw"> Железо в InjOnl: объём, статика форсунок, БЦН — как на моторе</label>
+          <label class="check"><input type="checkbox" data-check="st-err"> Считал ошибки, понятные стёр, железовые оставил и починил</label>
+        </div>
+
+        <h2 id="s6">6. Пуск</h2>
+        <p>Пока крутит стартер, ДАД в расчёт топлива ещё не входит. Сначала стабильный пуск. <a href="Трс пуск описание.html">Режим Пуск</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="go-cold"> Холодный пуск: схватывает без долгого молота стартером</label>
+          <label class="check"><input type="checkbox" data-check="go-hot"> Горячий пуск: нет перелива и долгого «не берёт»</label>
+          <label class="check"><input type="checkbox" data-check="go-hold"> После пуска не глохнет сразу — если глохнет, сначала переход, не рабочие карты</label>
+          <label class="check"><input type="checkbox" data-check="go-save"> Сохранил bin после правок пуска</label>
+        </div>
+
+        <h2 id="s7">7. Переход и холостой ход</h2>
+        <p>Когда пуск отпустил, в дело входят переход и ХХ: обороты, РХХ, УОЗ, адаптация после старта. Подробно — <a href="Трс холостой описание.html">Переход / Холостой ход</a>. В InjOnl на холодную можно снять уставку РХХ по ТОЖ, не гадая шагами вслепую.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="xx-in"> Вход в ХХ без провала и без зависания оборотов</label>
+          <label class="check"><input type="checkbox" data-check="xx-rpm"> Уставка оборотов ХХ по температуре держится, мотор не «козлит»</label>
+          <label class="check"><input type="checkbox" data-check="xx-rxx"> РХХ на прогретом в разумных шагах, не в упоре и не в нулях</label>
+          <label class="check"><input type="checkbox" data-check="xx-uoz"> УОЗ на ХХ ровный, нет сильных подёргиваний</label>
+          <label class="check"><input type="checkbox" data-check="xx-load"> Съезд с ХХ на малый газ и обратно без ямы</label>
+          <label class="check"><input type="checkbox" data-check="xx-save"> Сохранил bin после ХХ</label>
+        </div>
+        <h2 id="s8">8. Топливо, детонация, УОЗ</h2>
+        <p>После смены на ДАД прошивка «пустая»: сначала поправка циклового наполнения, потом смесь по ШДК. <a href="InjOnlDoc.html">InjOnl</a>, алгоритмы — <a href="j5ls_v43.html">J5LS</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="map-fuel"> Выкатал топливо по сетке: ХХ, частичные, переходные. Автокоррекция включена, когда сознательно пишете в блок</label>
+          <label class="check"><input type="checkbox" data-check="map-pxx"> После топлива вернул штатное отключение на ПХХ, если включали постоянную подачу</label>
+          <label class="check"><input type="checkbox" data-check="map-dd"> Настроил фильтры ДД под железо, нет ложных ударов и глухого игнора детонации</label>
+          <label class="check"><input type="checkbox" data-check="map-uoz"> УОЗ после топлива и фильтров, без звона</label>
+          <label class="check"><input type="checkbox" data-check="map-save"> Сохранил bin с диска, не только «в блоке»</label>
+        </div>
+
+        <h2 id="s9">9. Обкатка</h2>
+        <p>Не «покрутил на дворе и в клиент». Нужны прогревы, город, трасса, те же режимы, что будут у хозяина.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="rd-heat"> Несколько полных прогревов, ХХ горячий стабильный</label>
+          <label class="check"><input type="checkbox" data-check="rd-city"> Город: разгоны, торможения, светофоры, кондей если будет у клиента</label>
+          <label class="check"><input type="checkbox" data-check="rd-high"> Трасса и верхние обороты, смесь и детонация под нагрузкой</label>
+          <label class="check"><input type="checkbox" data-check="rd-start"> Пуск утром и на горячую после поездки</label>
+          <label class="check"><input type="checkbox" data-check="rd-err"> Нет новых ошибок, ЧЕК понятен</label>
+          <label class="check"><input type="checkbox" data-check="rd-save"> Финальный bin с ОЛТ сохранён отдельно, имя с датой</label>
+        </div>
+
+        <h2 id="s10">10. Снять инженерный флаг</h2>
+        <p>В клиентский Январь-5 файл с флагом «Инженерный ЭБУ» не пишут. Снимают флаг в CTP и сохраняют клиентский bin. Текст предупреждения — в <a href="j5ls_v43.html">J5LS V43A</a>.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="off-copy"> От финального инженерного файла сделал копию «для клиента»</label>
+          <label class="check"><input type="checkbox" data-check="off-flag"> В копии снял «Инженерный ЭБУ», остальные флаги не трогал</label>
+          <label class="check"><input type="checkbox" data-check="off-keep"> Инженерный bin с флагом оставил себе, клиентский — отдельно</label>
+        </div>
+
+        <h2 id="s11">11. Заливка в блок клиента</h2>
+        <p>Пишите клиентский файл Combiloader в обычный ЭБУ. Не гоняйте калибровки через «перенос из ОЛТ» — в J5LS прямо сказано, что такие программы часто врут.</p>
+        <div class="check-list">
+          <label class="check"><input type="checkbox" data-check="cl-file"> В Combiloader открыт клиентский bin без инженерного флага</label>
+          <label class="check"><input type="checkbox" data-check="cl-write"> Записал в блок клиента, дождался конца</label>
+          <label class="check"><input type="checkbox" data-check="cl-start"> Завёл, ХХ и пуск как на ОЛТ</label>
+          <label class="check"><input type="checkbox" data-check="cl-ride"> Короткая проверка на ходу: нет ямы, нет ЧЕК, нет детонации</label>
+          <label class="check"><input type="checkbox" data-check="cl-give"> Отдал клиенту тот же файл, что в блоке, плюс ваши заметки по железу</label>
+        </div>
+
+        <p class="note">Если после записи в клиент «поехало» через день-два — первым делом проверьте, не уехал ли в блок файл с инженерным флагом. Потом уже ищите калибровки.</p>
+      </article>
+      <p class="source">Маршрут J5LS ДАД+ДТВ. Пины и флаги — J5LS V43A, вариант 2.</p>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>

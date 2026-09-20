@@ -80,7 +80,7 @@ option { background: #121218; color: var(--ink); }
 #tree-head {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 36px;
+  grid-template-columns: 1fr 36px 36px;
   gap: 8px;
   align-items: start;
   padding: 10px 10px 6px;
@@ -170,8 +170,23 @@ option { background: #121218; color: var(--ink); }
   background: var(--dirty);
   box-shadow: 0 0 0 2px rgba(16, 16, 20, 0.7);
 }
+.guide-btn {
+  width: 36px; height: 36px; padding: 0; cursor: pointer;
+  border: 0; border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+.guide-btn::before {
+  content: "";
+  display: block; width: 16px; height: 16px; margin: 0 auto;
+  background: no-repeat center / 16px 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23c4b5fd' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3.2h4.4c1.6 0 2.6.8 2.6 2.2v7.4c0-1.2-.9-2-2.4-2H3z'/%3E%3Cpath d='M13 3.2H8.6C7 3.2 6 4 6 5.4v7.4c0-1.2.9-2 2.4-2H13z'/%3E%3C/svg%3E");
+}
+.guide-btn:hover,
+.guide-btn.on { background: rgba(167, 139, 250, 0.22); }
 .file-menu {
-  position: absolute; z-index: 20; top: 50px; right: 10px;
+  position: absolute; z-index: 20; top: 50px; right: 54px;
   min-width: 200px; padding: 8px;
   background: rgba(18, 18, 24, 0.86); color: var(--ink);
   border: 0; border-radius: 20px;
@@ -353,7 +368,75 @@ em.cmp-flag-lab {
 .flags-page { padding: 0; }
 #detail:has(.flags-page) { padding: 8px 10px; }
 
-#detail { flex: 1; overflow: auto; padding: 24px 28px; }
+#detail { flex: 1; overflow: auto; padding: 24px 28px; min-width: 0; }
+#guide-pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 260px;
+  width: 260px;
+  min-width: 260px;
+  min-height: 0;
+  background: rgba(8, 8, 12, 0.72);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+}
+#guide-pane[hidden] { display: none !important; }
+.guide-resize {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  z-index: 3;
+  cursor: col-resize;
+}
+.guide-resize:hover,
+body.guide-resizing .guide-resize {
+  background: rgba(167, 139, 250, 0.38);
+}
+body.guide-resizing #guide-frame { pointer-events: none; }
+body.guide-resizing { cursor: col-resize; user-select: none; }
+.guide-head {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 44px;
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sidebar-dim);
+}
+.guide-head span { text-align: center; min-width: 0; }
+#guide-back,
+#guide-close {
+  width: 32px; height: 32px; padding: 0; cursor: pointer;
+  border: 0; border-radius: 16px;
+  background: transparent;
+}
+#guide-back::before,
+#guide-close::before {
+  content: "";
+  display: block; width: 12px; height: 12px; margin: 0 auto;
+  background: no-repeat center / 12px 12px;
+}
+#guide-back::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M7.6 2.2L3.4 6l4.2 3.8' fill='none' stroke='%23c4b5fd' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+#guide-close::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2.4 2.4l7.2 7.2M9.6 2.4L2.4 9.6' stroke='%23c4b5fd' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+#guide-back:hover:not(:disabled),
+#guide-close:hover { background: rgba(167, 139, 250, 0.18); }
+#guide-back:disabled { opacity: 0.28; cursor: default; }
+#guide-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: #0b0b10;
+}
 .ctp-page { min-height: 100%; }
 .folder-page { max-width: 640px; }
 .folder-kids { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; }

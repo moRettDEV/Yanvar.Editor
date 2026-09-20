@@ -7,7 +7,14 @@ var MIME = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".js": "application/javascript; charset=utf-8",
-  ".json": "application/json; charset=utf-8"
+  ".json": "application/json; charset=utf-8",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".gif": "image/gif",
+  ".webp": "image/webp",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon"
 };
 
 function send(res, code, body, type) {
@@ -19,7 +26,9 @@ function send(res, code, body, type) {
 }
 
 function inside(file, root) {
-  return file === root || file.indexOf(root + path.sep) === 0;
+  var r = path.resolve(root);
+  var f = path.resolve(file);
+  return f === r || f.indexOf(r + path.sep) === 0;
 }
 
 function createEditorServer(opts) {

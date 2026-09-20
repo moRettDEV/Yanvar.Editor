@@ -24,6 +24,7 @@
             <span id="search-count"></span>
           </div>
           <button type="button" class="file-menu-btn" id="file-menu-btn" aria-label="Файл" aria-haspopup="true" aria-expanded="false"></button>
+          <button type="button" class="guide-btn" id="guide-btn" aria-label="Январь.гид" aria-pressed="false"></button>
           <input class="file-pick" id="file-bin" type="file" accept=".bin,.BIN" />
           <input class="file-pick" id="file-map" type="file" accept=".j5,.J5,.j7,.J7" />
           <input class="file-pick" id="file-compare" type="file" accept=".bin,.BIN" />
@@ -37,6 +38,7 @@
             <button type="button" class="file-menu-item" id="ai-export-btn" disabled>Экспорт для ИИ…</button>
             <button type="button" class="file-menu-item" id="ai-import-btn" disabled>Импорт из ИИ…</button>
             <input class="file-pick" id="file-ai-import" type="file" accept=".json,.md,.txt,.JSON,.MD,.TXT" />
+            <button type="button" class="file-menu-item" id="guide-menu-item">Январь.гид</button>
             <button type="button" class="file-menu-item danger" id="revert-bin" disabled>Откатить всё</button>
           </div>
         </div>
@@ -50,6 +52,15 @@
           <button type="button" class="open-hint-go" id="hint-open-bin">Открыть прошивку</button>
         </div>
       </section>
+      <aside id="guide-pane" hidden>
+        <div class="guide-resize" id="guide-resize" title="Ширина гида"></div>
+        <header class="guide-head">
+          <button type="button" id="guide-back" aria-label="Назад" disabled></button>
+          <span>Январь.гид</span>
+          <button type="button" id="guide-close" aria-label="Закрыть"></button>
+        </header>
+        <iframe id="guide-frame" title="Январь.гид" src="/guide/index.html"></iframe>
+      </aside>
     </div>
     <div id="status">нет файлов</div>
   </div>
@@ -113,6 +124,10 @@
   <script charset="utf-8" src="js/ui-tree.js"></script>
   <script charset="utf-8" src="js/ui-open-hint.js"></script>
   <script charset="utf-8" src="js/ui-file-menu.js"></script>
+  <script charset="utf-8" src="handlers/toggle-guide.handler.js"></script>
+  <script charset="utf-8" src="handlers/resize-guide.handler.js"></script>
+  <script charset="utf-8" src="handlers/guide-back.handler.js"></script>
+  <script charset="utf-8" src="js/ui-guide.js"></script>
   <script charset="utf-8" src="js/ui-scalar.js"></script>
   <script charset="utf-8" src="js/ui-table-texts.js"></script>
   <script charset="utf-8" src="js/ui-maf-page.js"></script>

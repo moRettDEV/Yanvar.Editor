@@ -32,7 +32,8 @@
       "handlers/**",
       "server.js",
       "build/icon.png",
-      "maps/**"
+      "maps/**",
+      "guide/**"
     ],
     "extraResources": [
       {

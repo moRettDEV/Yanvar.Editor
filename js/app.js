@@ -181,6 +181,7 @@ function init() {
     });
   });
   if (typeof bindFileMenu === "function") bindFileMenu();
+  if (typeof bindGuide === "function") bindGuide();
   if (typeof bindMapFamily === "function") bindMapFamily();
   if (typeof bindCompareUi === "function") bindCompareUi();
   document.getElementById("download-bin").addEventListener("click", downloadBin);

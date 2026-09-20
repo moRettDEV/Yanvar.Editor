@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>J5 / J7 Online — Январь.Гид</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Оглавление</h2>
+      <button class="toc-toggle" type="button" id="tocToggle">Показать разделы</button>
+      <ol>
+        <li><a href="#what">Что это</a></li>
+        <li><a href="#j5j7">J5 или J7</a></li>
+        <li><a href="#prep">До соединения</a></li>
+        <li><a href="#sock">Розетки</a></li>
+        <li><a href="#file">Папка — тот же файл</a></li>
+        <li><a href="#save">Дискетки</a></li>
+        <li><a href="#ram">Зажигание и RAM</a></li>
+        <li><a href="#order">Пуск, ХХ, потом InjOnl</a></li>
+      </ol>
+      <div class="series">
+        <div class="toc-brand">Серия</div>
+        <a href="index.html">Все статьи</a>
+        <a href="setup.html">От ОЛТ до блока клиента</a>
+        <a href="ctp.html">CTP 3.21</a>
+        <a class="current" href="olt.html">J5 / J7 Online</a>
+        <a href="InjOnlDoc.html">Injector Online</a>
+        <a href="hw.html">Железо и ОЛТ</a>
+        <a href="Трс пуск описание.html">Режим Пуск</a>
+        <a href="Трс холостой описание.html">Переход / Холостой ход</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero">
+        <p class="meta">
+          <span class="chip tag tag-tool">Инструмент</span>
+          <span class="chip tag tag-ecu">ОЛТ</span>
+          <span class="chip tag tag-ecu">Январь 5.1</span>
+          <span class="chip tag tag-ecu">Январь 7.2</span>
+        </p>
+        <h1>J5 / J7 Online</h1>
+      </header>
+      <article>
+        <p>Онлайн-тюнер из папки <code>J5OLT</code>: J5 — Январь 5.1, J7 — Январь 7.2. Им настраивают пуск и холостой на инженерном блоке, пока мотор ещё не едет по дороге. Смесь на ходу — <a href="InjOnlDoc.html">Injector Online</a>. Флаги до этого — в <a href="ctp.html">CTP 3.21</a>.</p>
+
+        <h2 id="what">Что это</h2>
+        <p>Программа пишет калибровки в RAM платы ОЛТ. Мотор сразу едет по новым цифрам. На диск ноутбука файл кладёт кнопка «Дискетки». В флеш блока это не пишется: навсегда — только Combiloader.</p>
+        <p>Софт привязан к плате (Dallas на комплекте). Чужой тюнер к чужой плате не «подгоняют» — берите программу из того комплекта, что купили, или из этого пакета, если плата та же линейка.</p>
+
+        <h2 id="j5j7">J5 или J7</h2>
+        <table>
+          <thead><tr><th></th><th>J5 Online</th><th>J7 Online</th></tr></thead>
+          <tbody>
+            <tr><td>Блок</td><td>Январь 5.1 / VS 5.1 OLD</td><td>Январь 7.2</td></tr>
+            <tr><td>Карты</td><td>файлы <code>.j5</code>, список в <code>j5tuner.lin</code></td><td>файлы <code>.j7</code>, список в <code>j7tuner.lin</code></td></tr>
+            <tr><td>Скорость</td><td>как у 5.1, обычно 10400</td><td>часто 38400, адаптер только FTDI</td></tr>
+            <tr><td>Пример 7.2</td><td>—</td><td>I204DM53.bir, j7esa</td></tr>
+          </tbody>
+        </table>
+        <p>Карта должна совпасть с идентификатором прошивки. Адреса в <code>.lin</code>: <code>[id] MapFile=...</code>. Карты лежат в корне тюнера, не переименовывайте их наугад.</p>
+
+        <h2 id="prep">До соединения</h2>
+        <ul>
+          <li>В CTP собрали рабочий bin: флаги, форсунки, объём, «Инженерный ЭБУ»</li>
+          <li>Записали этот файл в ОЛТ Combiloader</li>
+          <li>Тот же файл лежит на ноутбуке — его откроете в тюнере</li>
+          <li>Блок на авто или на столе, адаптер K-Line FTDI, зажигание включено, мотор можно ещё не заводить</li>
+        </ul>
+        <p>J5LS: калибровки из ОЛТ в клиент утилитой calmover не таскают. Снимают инженерный флаг в CTP и пишут тот же файл Combiloader. Calmover в readme SMS — только для пар <code>.bir</code> / серийный близнец, не для J5LS.</p>
+
+        <h2 id="sock">Розетки</h2>
+        <p>Запустите J5 или J7 тюнер. Кнопка «Розетки» — связь с блоком. Если не цепляется: кабель, АПС на K-линии в авто, не та скорость, в блоке не инженерный файл.</p>
+        <p>Завели мотор — связь часто рвётся. Снова «Розетки».</p>
+
+        <h2 id="file">Папка — тот же файл</h2>
+        <p>После связи нажмите «Папка» и откройте тот bin (или bir), что записан в ОЛТ. Если открыть другой — крутите одно, а блок едет по другому.</p>
+        <p>Дождитесь загрузки карт. Нет карты под этот id — программа не покажет таблицы. Возьмите прошивку из пакета с готовым <code>.j5</code> / <code>.j7</code>.</p>
+
+        <h2 id="save">Дискетки</h2>
+        <p>«Дискетки» и меню Файл → Сохранить пишут файл на ноутбук, не во флеш ЭБУ. Настроили ХХ — «Сохранить как» под новым именем, например <code>откатка_хх_1.bin</code>.</p>
+        <p>Чтобы цифры жили после снятия клеммы и в клиентском блоке — этот файл пишут Combiloader.</p>
+
+        <h2 id="ram">Зажигание и RAM</h2>
+        <p>Пока зажигание и связь есть, правки в таблицах действуют сразу. Заглох, выключили зажигание — RAM сбрасывается к тому, что было залито Combiloader.</p>
+        <p>Включили зажигание, завели, снова «Розетки». Только после связи подтянется файл, который вы открыли и сохранили на ноуте. Без повторного соединения блок едет по старой заливке.</p>
+
+        <h2 id="order">Пуск, ХХ, потом InjOnl</h2>
+        <p>Сначала добьтесь пуска и ровного ХХ здесь. Таблицы — <a href="Трс пуск описание.html">Пуск</a> и <a href="Трс холостой описание.html">Холостой ход</a>. Смесь на ХХ смотрите по ШДК, но выкатывать всю сетку топлива в J5 тюнере не нужно.</p>
+        <p>Когда мотор стабильно заводится и не глохнет — открывайте <a href="InjOnlDoc.html">Injector Online</a> тем же файлом и учите топливо на ходу. В InjOnl путь к CTP задают в Свойства → Визуальные, кнопка «Молния».</p>
+        <p>Маршрут целиком — <a href="setup.html">От ОЛТ до блока клиента</a>. Железо платы — <a href="hw.html">Железо и ОЛТ</a>.</p>
+      </article>
+      <p class="source">По краткой инструкции пакета, j5tuner.lin / j7tuner.lin и BIR-ENGINE readme. Патчи лицензии Dallas сюда не входят.</p>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>

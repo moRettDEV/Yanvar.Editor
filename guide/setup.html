@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru" data-folder="site">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Маршруты настройки — Январь.Гид</title>
+  <link rel="stylesheet" href="trs249.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="toc" id="toc">
+      <div class="toc-brand">Январь.Гид</div>
+      <div class="search-box">
+        <input type="search" id="siteSearch" autocomplete="off" spellcheck="false">
+        <div id="searchPanel" class="search-panel" hidden></div>
+      </div>
+      <h2>Оглавление</h2>
+      <button class="toc-toggle" type="button" id="tocToggle">Показать разделы</button>
+      <ol>
+        <li><a href="#trs">TRS</a></li>
+        <li><a href="#ls">J5LS</a></li>
+      </ol>
+      <div class="series">
+        <div class="toc-brand">Серия</div>
+        <a href="index.html">Все статьи</a>
+        <a class="current" href="setup.html">От ОЛТ до блока клиента</a>
+        <a href="Трс флаги описание.html">Флаги комплектации</a>
+        <a href="Трс пуск описание.html">Режим Пуск</a>
+        <a href="Трс холостой описание.html">Переход / Холостой ход</a>
+        <a href="Описание прошивки.html">Описание прошивки</a>
+        <a href="ctp.html">CTP 3.21</a>
+        <a href="olt.html">J5 / J7 Online</a>
+        <a href="InjOnlDoc.html">Injector Online</a>
+        <a href="j5ls_v43.html">J5LS V43A</a>
+      </div>
+    </nav>
+    <div class="page">
+      <header class="hero">
+        <p class="meta">
+          <span class="chip tag tag-route">Маршрут</span>
+          <span class="chip tag tag-ecu">ОЛТ</span>
+          <span class="chip tag tag-trs">TRS</span>
+          <span class="chip tag tag-ls">LS</span>
+          <span class="chip tag tag-tool">InjOnl</span>
+        </p>
+        <h1>Выбери маршрут настройки</h1>
+      </header>
+      <article>
+        <p>Выбери прошивку и воздух. ДМРВ — не ДАД. Софт: <a href="ctp.html">CTP</a>, <a href="olt.html">J5 / J7 Online</a>, <a href="InjOnlDoc.html">InjOnl</a>.</p>
+        <p class="note">Галочки живут внутри каждого маршрута. Железо блока и кабель — в <a href="hw.html">Железо и ОЛТ</a>.</p>
+
+        <h2 id="trs">TRS</h2>
+        <p>TRS249 и линейка TRS. Флаги и ХХ — статьи Turbodima в этом пакете.</p>
+        <div class="cards home">
+          <a class="card" href="setup-trs-dmrv.html">
+            <div class="num">TRS</div>
+            <h2>ДМРВ</h2>
+            <p>Сток-схема воздуха, наполнение по расходомеру.</p>
+            <div class="tags"><span class="tag tag-trs">TRS</span><span class="tag">ДМРВ</span></div>
+          </a>
+          <a class="card" href="setup-trs-dad.html">
+            <div class="num">TRS</div>
+            <h2>ДАД + ДТВ</h2>
+            <p>Без ДМРВ, давление и температура заряда.</p>
+            <div class="tags"><span class="tag tag-trs">TRS</span><span class="tag">ДАД</span></div>
+          </a>
+          <a class="card" href="setup-trs-turbo.html">
+            <div class="num">TRS</div>
+            <h2>Турбо</h2>
+            <p>Наддув, ДАД 250 кПа, смесь и угол под давление.</p>
+            <div class="tags"><span class="tag tag-trs">TRS</span><span class="tag">Турбо</span></div>
+          </a>
+        </div>
+
+        <h2 id="ls">J5LS</h2>
+        <p>Light sport. Флаги только в CTP, потом перезапись в ОЛТ. Не тащи калибровки «переносом».</p>
+        <div class="cards home">
+          <a class="card" href="setup-ls-dmrv.html">
+            <div class="num">LS</div>
+            <h2>ДМРВ</h2>
+            <p>Гражданский вариант из инструкции J5LS.</p>
+            <div class="tags"><span class="tag tag-ls">LS</span><span class="tag">ДМРВ</span></div>
+          </a>
+          <a class="card" href="setup-ls-dad.html">
+            <div class="num">LS</div>
+            <h2>ДАД + ДТВ</h2>
+            <p>Без ДМРВ, ноги 40/44, таблица ДАД.</p>
+            <div class="tags"><span class="tag tag-ls">LS</span><span class="tag">ДАД</span></div>
+          </a>
+          <a class="card" href="setup-ls-turbo.html">
+            <div class="num">LS</div>
+            <h2>Турбо</h2>
+            <p>Управление наддувом, УОЗ по давлению, ШДК/EGT на ОЛТ.</p>
+            <div class="tags"><span class="tag tag-ls">LS</span><span class="tag">Турбо</span></div>
+          </a>
+        </div>
+              </article>
+      <p class="source">Шесть маршрутов: TRS и J5LS × ДМРВ / ДАД / турбо. Чеклист внутри выбранного файла, не общий.</p>
+    </div>
+  </div>
+  <script src="search-index.js"></script>
+  <script src="trs249.js"></script>
+</body>
+</html>
