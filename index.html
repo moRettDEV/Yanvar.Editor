@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#000000" />
+  <title>Январь.редактор</title>
+  <link rel="icon" href="build/icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="main">
+      <aside id="sidebar">
+        <div id="tree-head">
+          <div class="app-brand">Январь.редактор</div>
+          <div class="family-seg" id="family-seg" role="radiogroup" aria-label="Тип прошивки">
+            <button type="button" role="radio" data-family="trs" aria-checked="true">TRS</button>
+            <button type="button" role="radio" data-family="ls" aria-checked="false">LS</button>
+            <button type="button" role="radio" data-family="stock" aria-checked="false">Сток</button>
+          </div>
+          <div class="search-wrap">
+            <input id="search" type="search" placeholder="Поиск: имя, 0x607D" autocomplete="off" spellcheck="false" />
+            <span id="search-count"></span>
+          </div>
+          <button type="button" class="file-menu-btn" id="file-menu-btn" aria-label="Файл" aria-haspopup="true" aria-expanded="false"></button>
+          <input class="file-pick" id="file-bin" type="file" accept=".bin,.BIN" />
+          <input class="file-pick" id="file-map" type="file" accept=".j5,.J5,.j7,.J7" />
+          <input class="file-pick" id="file-compare" type="file" accept=".bin,.BIN" />
+          <button type="button" class="compare-chip" id="compare-chip" hidden></button>
+          <div class="file-menu" id="file-menu" hidden>
+            <label class="file-menu-item" id="open-bin-item" for="file-bin">Открыть прошивку</label>
+            <label class="file-menu-item off" id="open-map-item" for="file-map">Открыть карту</label>
+            <label class="file-menu-item off" id="open-compare-item" for="file-compare">Сравнить с…</label>
+            <button type="button" class="file-menu-item" id="clear-compare" hidden>Снять сравнение</button>
+            <button type="button" class="file-menu-item" id="download-bin" disabled>Сохранить прошивку…</button>
+            <button type="button" class="file-menu-item" id="ai-export-btn" disabled>Экспорт для ИИ…</button>
+            <button type="button" class="file-menu-item danger" id="revert-bin" disabled>Откатить всё</button>
+          </div>
+        </div>
+        <nav id="tree"></nav>
+      </aside>
+      <section id="detail">
+        <div class="open-hint" id="open-hint">
+          <p class="open-hint-step">1</p>
+          <h2>Открой прошивку</h2>
+          <p class="hint">Слайдер <b>TRS / LS / Сток</b> сверху. Для TRS карта подхватится сама.</p>
+          <button type="button" class="open-hint-go" id="hint-open-bin">Открыть прошивку</button>
+        </div>
+      </section>
+    </div>
+    <div id="status">нет файлов</div>
+  </div>
+  <script charset="utf-8" src="/lib/cp1251.js"></script>
+  <script charset="utf-8" src="/lib/bin-io.js"></script>
+  <script charset="utf-8" src="/lib/parse-map.js"></script>
+  <script charset="utf-8" src="/lib/parse-cte.js"></script>
+  <script charset="utf-8" src="/lib/maf-cte-ref.js"></script>
+  <script charset="utf-8" src="/lib/scales.js"></script>
+  <script charset="utf-8" src="/lib/read-value.js"></script>
+  <script charset="utf-8" src="/lib/graph-heat.js"></script>
+  <script charset="utf-8" src="/lib/table-layout.js"></script>
+  <script charset="utf-8" src="/lib/graph-scale.js"></script>
+  <script charset="utf-8" src="/lib/graph-2d.js"></script>
+  <script charset="utf-8" src="js/hide-plot-legend.js"></script>
+  <script charset="utf-8" src="/lib/graph-3d.js"></script>
+  <script charset="utf-8" src="/lib/graph-3d-overlay.js"></script>
+  <script charset="utf-8" src="/lib/orbit-3d.handler.js"></script>
+  <script charset="utf-8" src="/lib/ui-search.js"></script>
+  <script charset="utf-8" src="/lib/ui-grid-table.js"></script>
+  <script charset="utf-8" src="/lib/ui-edit-grid.js"></script>
+  <script charset="utf-8" src="/lib/attach-grid-select.js"></script>
+  <script charset="utf-8" src="/lib/edit-history.js"></script>
+  <script charset="utf-8" src="/lib/undo-edit.handler.js"></script>
+  <script charset="utf-8" src="/lib/ui-ctp-tools.js"></script>
+  <script charset="utf-8" src="/lib/ui-flag.js"></script>
+  <script charset="utf-8" src="/lib/ui-pin.js"></script>
+  <script charset="utf-8" src="/lib/export-cte.handler.js"></script>
+  <script charset="utf-8" src="/lib/ui-cte-menu.js"></script>
+  <script charset="utf-8" src="js/known-z-extra.js"></script>
+  <script charset="utf-8" src="js/bin-guard.js"></script>
+  <script charset="utf-8" src="js/fmt.js"></script>
+  <script charset="utf-8" src="js/session-files.js"></script>
+  <script charset="utf-8" src="js/write-raw.js"></script>
+  <script charset="utf-8" src="js/invert-preset.js"></script>
+  <script charset="utf-8" src="js/invert-formula.js"></script>
+  <script charset="utf-8" src="js/phys-to-raw.js"></script>
+  <script charset="utf-8" src="js/item-span.js"></script>
+  <script charset="utf-8" src="js/bin-dirty.js"></script>
+  <script charset="utf-8" src="handlers/write-scalar.handler.js"></script>
+  <script charset="utf-8" src="handlers/write-table-cell.handler.js"></script>
+  <script charset="utf-8" src="handlers/write-table-range.handler.js"></script>
+  <script charset="utf-8" src="handlers/write-flag.handler.js"></script>
+  <script charset="utf-8" src="handlers/write-pin.handler.js"></script>
+  <script charset="utf-8" src="handlers/apply-cte-bin.handler.js"></script>
+  <script charset="utf-8" src="handlers/download-bin.handler.js"></script>
+  <script charset="utf-8" src="handlers/revert-bin.handler.js"></script>
+  <script charset="utf-8" src="handlers/revert-item.handler.js"></script>
+  <script charset="utf-8" src="handlers/open-bin.handler.js"></script>
+  <script charset="utf-8" src="handlers/open-map.handler.js"></script>
+  <script charset="utf-8" src="js/compare-bin.js"></script>
+  <script charset="utf-8" src="handlers/open-compare.handler.js"></script>
+  <script charset="utf-8" src="handlers/clear-compare.handler.js"></script>
+  <script charset="utf-8" src="handlers/copy-compare-item.handler.js"></script>
+  <script charset="utf-8" src="handlers/copy-compare-folder.handler.js"></script>
+  <script charset="utf-8" src="handlers/copy-compare-cells.handler.js"></script>
+  <script charset="utf-8" src="js/ui-compare.js"></script>
+  <script charset="utf-8" src="js/compare-grid.js"></script>
+  <script charset="utf-8" src="js/compare-flag.js"></script>
+  <script charset="utf-8" src="js/ui-item-menu.js"></script>
+  <script charset="utf-8" src="js/ui-tree.js"></script>
+  <script charset="utf-8" src="js/ui-open-hint.js"></script>
+  <script charset="utf-8" src="js/ui-file-menu.js"></script>
+  <script charset="utf-8" src="js/ui-scalar.js"></script>
+  <script charset="utf-8" src="js/ui-table-texts.js"></script>
+  <script charset="utf-8" src="js/ui-maf-page.js"></script>
+  <script charset="utf-8" src="js/ui-table-page.js"></script>
+  <script charset="utf-8" src="js/ui-folder-page.js"></script>
+  <script charset="utf-8" src="js/ui-detail.js"></script>
+  <script charset="utf-8" src="js/maps/map-catalog.js"></script>
+  <script charset="utf-8" src="js/maps/firmware-text.js"></script>
+  <script charset="utf-8" src="js/maps/detect-firmware.js"></script>
+  <script charset="utf-8" src="js/maps/match-bundled-map.js"></script>
+  <script charset="utf-8" src="handlers/load-bundled-map.handler.js"></script>
+  <script charset="utf-8" src="handlers/attach-bundled-map.handler.js"></script>
+  <script charset="utf-8" src="handlers/set-map-family.handler.js"></script>
+  <script charset="utf-8" src="handlers/suggest-bin-name.handler.js"></script>
+  <script charset="utf-8" src="js/ai-export/item-key.js"></script>
+  <script charset="utf-8" src="js/ai-export/walk-items.js"></script>
+  <script charset="utf-8" src="js/ai-export/collect-scope.js"></script>
+  <script charset="utf-8" src="js/ai-export/firmware-context.js"></script>
+  <script charset="utf-8" src="js/ai-export/related-items.js"></script>
+  <script charset="utf-8" src="js/ai-export/describe-table.js"></script>
+  <script charset="utf-8" src="js/ai-export/describe-item.js"></script>
+  <script charset="utf-8" src="js/ai-export/build-payload.js"></script>
+  <script charset="utf-8" src="js/ai-export/format-json.js"></script>
+  <script charset="utf-8" src="js/ai-export/format-md.js"></script>
+  <script charset="utf-8" src="js/ai-export/format-txt.js"></script>
+  <script charset="utf-8" src="js/ai-export/format-export.js"></script>
+  <script charset="utf-8" src="handlers/run-ai-export.handler.js"></script>
+  <script charset="utf-8" src="js/ui-ai-export-list.js"></script>
+  <script charset="utf-8" src="js/ui-ai-export.js"></script>
+  <script charset="utf-8" src="js/ui-map-family.js"></script>
+  <script charset="utf-8" src="handlers/ensure-maf-span.handler.js"></script>
+  <script charset="utf-8" src="js/app.js"></script>
+  <script charset="utf-8" src="js/electron-bridge.js"></script>
+</body>
+</html>

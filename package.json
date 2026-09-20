@@ -1,0 +1,80 @@
+{
+  "name": "yanvar-editor",
+  "productName": "Январь.редактор",
+  "version": "5.1.0",
+  "description": "Январь.редактор — правка прошивок Январь 5.1",
+  "main": "electron/main.js",
+  "author": "Январь.редактор",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64 --arm64",
+    "dist:win": "electron-builder --win --x64 --arm64",
+    "dist:mac": "electron-builder --mac --arm64"
+  },
+  "devDependencies": {
+    "electron": "^33.4.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "ru.yanvar.editor",
+    "productName": "Январь.редактор",
+    "icon": "build/icon.png",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**",
+      "index.html",
+      "styles.css",
+      "js/**",
+      "handlers/**",
+      "server.js",
+      "build/icon.png",
+      "maps/**"
+    ],
+    "extraResources": [
+      {
+        "from": "lib",
+        "to": "lib"
+      }
+    ],
+    "forceCodeSigning": false,
+    "win": {
+      "executableName": "YanvarEditor",
+      "signAndEditExecutable": false,
+      "signDlls": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "unicode": true,
+      "artifactName": "${productName}-${version}-${os}-${arch}-setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-${os}-${arch}-portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        }
+      ],
+      "category": "public.app-category.developer-tools",
+      "identity": null
+    }
+  }
+}
