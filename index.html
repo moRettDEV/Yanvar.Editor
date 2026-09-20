@@ -35,6 +35,8 @@
             <button type="button" class="file-menu-item" id="clear-compare" hidden>Снять сравнение</button>
             <button type="button" class="file-menu-item" id="download-bin" disabled>Сохранить прошивку…</button>
             <button type="button" class="file-menu-item" id="ai-export-btn" disabled>Экспорт для ИИ…</button>
+            <button type="button" class="file-menu-item" id="ai-import-btn" disabled>Импорт из ИИ…</button>
+            <input class="file-pick" id="file-ai-import" type="file" accept=".json,.md,.txt,.JSON,.MD,.TXT" />
             <button type="button" class="file-menu-item danger" id="revert-bin" disabled>Откатить всё</button>
           </div>
         </div>
@@ -140,6 +142,13 @@
   <script charset="utf-8" src="handlers/run-ai-export.handler.js"></script>
   <script charset="utf-8" src="js/ui-ai-export-list.js"></script>
   <script charset="utf-8" src="js/ui-ai-export.js"></script>
+  <script charset="utf-8" src="js/ai-export/find-item.js"></script>
+  <script charset="utf-8" src="js/ai-export/parse-json.js"></script>
+  <script charset="utf-8" src="js/ai-export/parse-txt.js"></script>
+  <script charset="utf-8" src="js/ai-export/parse-import.js"></script>
+  <script charset="utf-8" src="handlers/apply-ai-item.handler.js"></script>
+  <script charset="utf-8" src="handlers/run-ai-import.handler.js"></script>
+  <script charset="utf-8" src="js/ui-ai-import.js"></script>
   <script charset="utf-8" src="js/ui-map-family.js"></script>
   <script charset="utf-8" src="handlers/ensure-maf-span.handler.js"></script>
   <script charset="utf-8" src="js/app.js"></script>

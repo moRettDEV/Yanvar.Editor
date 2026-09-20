@@ -30,6 +30,9 @@ function showItemMenu(x, y, item, api) {
       if (typeof selectNode === "function") selectNode(item);
       if (typeof openAiExport === "function") openAiExport();
     });
+    add("Импорт из ИИ…", function () {
+      if (typeof openAiImport === "function") openAiImport();
+    });
   }
   if (item && item.kind === "table") {
     add("Импорт CTE…", function () {

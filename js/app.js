@@ -186,6 +186,7 @@ function init() {
   document.getElementById("download-bin").addEventListener("click", downloadBin);
   var aiBtn = document.getElementById("ai-export-btn");
   if (aiBtn) aiBtn.addEventListener("click", openAiExport);
+  if (typeof bindAiImport === "function") bindAiImport();
   document.getElementById("revert-bin").addEventListener("click", revertBin);
   var search = document.getElementById("search");
   search.addEventListener("input", function (e) { applySearch(e.target.value); });

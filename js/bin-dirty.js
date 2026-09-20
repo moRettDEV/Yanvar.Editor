@@ -14,6 +14,8 @@ function refreshDirtyUi() {
   if (save) save.disabled = !state.bin;
   var aiBtn = document.getElementById("ai-export-btn");
   if (aiBtn) aiBtn.disabled = !state.bin || !state.map;
+  var aiIn = document.getElementById("ai-import-btn");
+  if (aiIn) aiIn.disabled = !state.bin || !state.map;
   if (revert) revert.disabled = !n;
   if (menuBtn) menuBtn.classList.toggle("dirty", !!n);
   if (typeof refreshOpenGate === "function") refreshOpenGate();

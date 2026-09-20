@@ -71,6 +71,13 @@
     }, true);
   }
 
+  openAiImport = function () {
+    window.yanvar.pickAiImport().then(function (res) {
+      if (!res || !res.bytes) return;
+      runAiImport(toU8(res.bytes), res.name);
+    });
+  };
+
   hijackLabel("open-bin-item", promptOpenBin);
   hijackLabel("open-map-item", promptOpenMap);
   hijackLabel("open-compare-item", promptOpenCompare);
